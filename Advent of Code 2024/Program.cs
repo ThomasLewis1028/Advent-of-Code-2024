@@ -19,6 +19,7 @@ while (true)
             Day3.Run();
             break;
         case 4:
+            Day4.Run();
             break;
         case 5:
             break;

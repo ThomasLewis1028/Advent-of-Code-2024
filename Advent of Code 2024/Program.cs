@@ -10,13 +10,13 @@ while (true)
     switch (day)
     {
         case 1: 
-            new Day1().Run();
+            Day1.Run();
             break;
         case 2:
-            new Day2().Run();
+            Day2.Run();
             break;
         case 3:
-            new Day3().Run();
+            Day3.Run();
             break;
         case 4:
             break;

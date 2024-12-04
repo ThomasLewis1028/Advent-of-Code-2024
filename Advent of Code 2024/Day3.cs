@@ -4,18 +4,17 @@ namespace Advent_of_Code_2024;
 
 public class Day3
 {
-    public void Run()
+    public static void Run()
     {
         Console.WriteLine("--- Day 3: Mull It Over ---");
         
         var input = File.ReadAllText("input/day3.txt").Trim();
         
-        
-        Part1(input);
-        Part2(input);
+        Console.WriteLine("\tPart 1: " + Part1(input));
+        Console.WriteLine("\tPart 2: " + Part2(input));
     }
 
-    private static void Part1(string input)
+    private static int Part1(string input)
     {
         var memory = Regex.Matches(input, @"mul\(\d{1,3},\d{1,3}\)").ToList();
         
@@ -23,15 +22,20 @@ public class Day3
         
         foreach (var match in memory)
         {
-            var equation = match.Value.Replace("mul(", "").Replace(")", "").Split(",").Select(int.Parse).ToList();
+            var equation = match.Value
+                .Replace("mul(", "")
+                .Replace(")", "")
+                .Split(",")
+                .Select(int.Parse)
+                .ToList();
             
             sum += equation[0] * equation[1];
         }
         
-        Console.WriteLine("\tPart 1: " + sum);
+        return sum;
     }
 
-    private static void Part2(string input)
+    private static int Part2(string input)
     {
         var memory = Regex.Matches(input, @"(mul\(\d{1,3},\d{1,3}\)|do\(\)|don't\(\))").ToList();
         
@@ -50,16 +54,19 @@ public class Day3
                 disabled = true;
                 continue;
             }
-            
-            if (!disabled)
-            {
-                var equation = match.Value.Replace("mul(", "").Replace(")", "").Split(",").Select(int.Parse).ToList();
 
-                sum += equation[0] * equation[1];
-            }
+            if (disabled) continue;
+            
+            var equation = match.Value
+                .Replace("mul(", "")
+                .Replace(")", "")
+                .Split(",")
+                .Select(int.Parse)
+                .ToList();
+
+            sum += equation[0] * equation[1];
         }
         
-        Console.WriteLine("\tPart 2: " + sum);
-        
+        return sum;
     }
 }

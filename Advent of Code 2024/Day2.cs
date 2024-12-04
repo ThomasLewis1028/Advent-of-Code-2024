@@ -2,7 +2,7 @@ namespace Advent_of_Code_2024;
 
 public class Day2
 {
-    public void Run()
+    public static void Run()
     {
         Console.WriteLine("--- Day 2: Red-Nosed Reports ---");
 
@@ -17,11 +17,11 @@ public class Day2
                 .ToList())
             .ToList();
 
-        Part1(data);
-        Part2(data);
+        Console.WriteLine("\tPart 1: " + Part1(data));
+        Console.WriteLine("\tPart 2: " + Part2(data));
     }
 
-    private static void Part1(List<List<long>> data)
+    private static int Part1(List<List<long>> data)
     {
         var safeCount = 0;
 
@@ -52,10 +52,10 @@ public class Day2
             if (safe) safeCount++;
         }
 
-        Console.WriteLine("\tPart 1: " + safeCount);
+        return safeCount;
     }
 
-    private static void Part2(List<List<long>> data)
+    private static int Part2(List<List<long>> data)
     {
         var safeCount = 0;
 
@@ -103,6 +103,6 @@ public class Day2
                 safeCount++;
         }
 
-        Console.WriteLine("\tPart 2: " + safeCount);
+        return safeCount;
     }
 }

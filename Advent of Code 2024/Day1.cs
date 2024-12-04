@@ -2,7 +2,7 @@ namespace Advent_of_Code_2024;
 
 public class Day1
 {
-    public void Run()
+    public static void Run()
     {
         Console.WriteLine("--- Day 1: Historian Hysteria ---");
         
@@ -31,21 +31,21 @@ public class Day1
         left.Sort();
         right.Sort();
 
-        Part1(left, right);
-        Part2(left, right);
+        Console.WriteLine("\tPart 1: " + Part1(left, right));
+        Console.WriteLine("\tPart 2: " + Part2(left, right));
     }
 
-    private void Part1(List<int> left, List<int> right)
+    private static int Part1(List<int> left, List<int> right)
     {
         var sum = left.Select((t, i) => Math.Abs(t - right[i])).Sum();
 
-        Console.WriteLine("\tPart 1: " + sum);
+        return sum;
     }
 
-    private void Part2(List<int> left, List<int> right)
+    private static int Part2(List<int> left, List<int> right)
     {
         var similarity = left.Select((l) => Math.Abs(l * right.Count(r => r == l))).Sum();
         
-        Console.WriteLine("\tPart 2: " + similarity);
+        return similarity;
     }
 }

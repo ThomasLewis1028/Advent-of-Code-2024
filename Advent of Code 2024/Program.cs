@@ -2,9 +2,18 @@
 
 while (true)
 {
-    Console.Write("Select the day: ");
-    int day = Int32.Parse(Console.ReadLine() ?? string.Empty);
-    
+    int day = 0;
+    try
+    {
+        Console.Write("Select the day: ");
+        day = Int32.Parse(Console.ReadLine() ?? string.Empty);
+    }
+    catch
+    {
+        Console.Clear();
+        Console.WriteLine("Invalid day!\n");
+        continue;
+    }
     Console.Clear();
     
     switch (day)

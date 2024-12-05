@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 
 namespace Advent_of_Code_2024;
 
-public class Day3
+public static class Day3
 {
     public static void Run()
     {

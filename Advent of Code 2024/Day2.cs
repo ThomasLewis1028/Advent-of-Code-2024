@@ -1,6 +1,6 @@
 namespace Advent_of_Code_2024;
 
-public class Day2
+public static class Day2
 {
     public static void Run()
     {

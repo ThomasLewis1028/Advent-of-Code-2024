@@ -1,5 +1,3 @@
-using System.Text.RegularExpressions;
-
 namespace Advent_of_Code_2024;
 
 public class Day4

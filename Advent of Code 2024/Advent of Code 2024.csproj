@@ -9,10 +9,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    </ItemGroup>
-
-    <ItemGroup>
       <None Remove="input\day1.txt" />
       <EmbeddedResource Include="input\day1.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>

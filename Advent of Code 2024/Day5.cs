@@ -12,15 +12,14 @@ public static class Day5
         List<List<int>> pageGroups = input[1]
             .Split("\n")
             .Select(line => line.Split(",")
-                .Select(int.Parse).
-                ToList())
+                .Select(int.Parse).ToList())
             .ToList();
 
         foreach (var rule in input[0].Split('\n'))
         {
             int key = int.Parse(rule.Substring(0, rule.IndexOf('|')));
             int value = int.Parse(rule.Substring(rule.IndexOf('|') + 1));
-            
+
             if (!rules.ContainsKey(key))
                 rules.Add(key, new List<int> { value });
             else
@@ -38,26 +37,26 @@ public static class Day5
         foreach (var pages in pageGroups)
         {
             bool correct = true;
-            
-            for (int i = pages.Count-1; i >= 0; i--)
+
+            for (int i = pages.Count - 1; i >= 0; i--)
             {
                 for (int j = 0; j < i; j++)
                 {
                     if (!rules.ContainsKey(pages[i])) continue;
                     if (!rules[pages[i]].Contains(pages[j])) continue;
-                    
+
                     correct = false;
                     break;
                 }
-                
+
                 if (!correct)
                     break;
             }
-            
+
             if (correct)
-                sum += pages[pages.Count/2];
+                sum += pages[pages.Count / 2];
         }
-       
+
         return sum;
     }
 
@@ -69,18 +68,18 @@ public static class Day5
         foreach (var pages in pageGroups)
         {
             bool correct = true;
-            
-            for (int i = pages.Count-1; i >= 0; i--)
+
+            for (int i = pages.Count - 1; i >= 0; i--)
             {
                 for (int j = 0; j < i; j++)
                 {
                     if (!rules.ContainsKey(pages[i])) continue;
                     if (!rules[pages[i]].Contains(pages[j])) continue;
-                    
+
                     correct = false;
                     break;
                 }
-                
+
                 if (!correct)
                     break;
             }
@@ -89,11 +88,35 @@ public static class Day5
                 badPageGroups.Add(pages);
         }
 
-        foreach (var badPageGroup in badPageGroups)
+        foreach (var badPages in badPageGroups)
         {
-            
+            bool correct = false;
+
+            while (!correct)
+            {
+                for (int i = badPages.Count - 1; i >= 0; i--)
+                {
+                    for (int j = 0; j < i; j++)
+                    {
+                        correct = true;
+
+                        if (!rules.ContainsKey(badPages[i])) continue;
+                        if (!rules[badPages[i]].Contains(badPages[j])) continue;
+
+                        correct = false;
+
+                        var temp = badPages[i];
+                        badPages.RemoveAt(i);
+
+                        badPages.Insert(j, temp);
+                    }
+                }
+
+                if (correct)
+                    sum += badPages[badPages.Count / 2];
+            }
         }
-       
-        return badPageGroups.Count;
+
+        return sum;
     }
 }

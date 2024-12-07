@@ -1,4 +1,5 @@
-﻿using Advent_of_Code_2024;
+﻿using System.Diagnostics;
+using Advent_of_Code_2024;
 
 while (true)
 {
@@ -16,9 +17,11 @@ while (true)
     }
     Console.Clear();
     
+    var timer = Stopwatch.StartNew();
+    var time = DateTime.Now;
     switch (day)
     {
-        case 1: 
+        case 1:
             Day1.Run();
             break;
         case 2:
@@ -34,8 +37,10 @@ while (true)
             Day5.Run();
             break;
         case 6:
+            Day6.Run();
             break;
         case 7:
+            Day7.Run();
             break;
         case 8:
             break;
@@ -73,5 +78,6 @@ while (true)
             break;
     }
     
+    Console.WriteLine("\nElapsed Time: " + timer.Elapsed);
     Console.WriteLine();
 }

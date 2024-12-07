@@ -37,14 +37,19 @@ public static class Day1
 
     private static int Part1(List<int> left, List<int> right)
     {
-        var sum = left.Select((t, i) => Math.Abs(t - right[i])).Sum();
+        var sum = left
+            .Select((t, i) => Math.Abs(t - right[i]))
+            .Sum();
 
         return sum;
     }
 
     private static int Part2(List<int> left, List<int> right)
     {
-        var similarity = left.Select((l) => Math.Abs(l * right.Count(r => r == l))).Sum();
+        var similarity = left
+            .Select(l => Math.Abs(l * right
+                .Count(r => r == l)))
+            .Sum();
         
         return similarity;
     }

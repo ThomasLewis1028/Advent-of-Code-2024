@@ -1,5 +1,3 @@
-using System.Text;
-
 namespace Advent_of_Code_2024;
 
 public static class Day7
@@ -45,9 +43,9 @@ public static class Day7
         {
             List<long> eqAnswers = new List<long>();
 
-            Calculate(eqAnswers, equation.values, "", 0);
+            var found = Calculate(equation.answer, equation.values, "", 0);
 
-            if (eqAnswers.Contains(equation.answer))
+            if (found)
                 sum += equation.answer;
         }
 
@@ -62,16 +60,16 @@ public static class Day7
         {
             List<long> eqAnswers = new List<long>();
 
-            Calculate(eqAnswers, equation.values, "", 0, true);
+            var found = Calculate(equation.answer, equation.values, "", 0, true);
 
-            if (eqAnswers.Contains(equation.answer))
+            if (found)
                 sum += equation.answer;
         }
 
         return sum;
     }
 
-    private static List<long> Calculate(List<long> eqAnswers, List<long> values, string equation, int index,
+    private static bool Calculate(long answer, List<long> values, string equation, int index,
         bool pt2 = false)
     {
         if (index <= values.Count - 1)
@@ -80,15 +78,24 @@ public static class Day7
             {
                 if (i != values.Count - 1)
                 {
-                    Calculate(eqAnswers, values, equation + values[i] + " + ", i + 1, pt2);
-                    Calculate(eqAnswers, values, equation + values[i] + " * ", i + 1, pt2);
+                    var found = false;
+
+                    found = Calculate(answer, values, equation + values[i] + " + ", i + 1, pt2);
+
+                    if (!found)
+                        found = Calculate(answer, values, equation + values[i] + " * ", i + 1, pt2);
+
                     if (pt2)
-                        Calculate(eqAnswers, values, equation + values[i] + " || ", i + 1, pt2);
+                    {
+                        if (!found)
+                            found = Calculate(answer, values, equation + values[i] + " || ", i + 1, pt2);
+                    }
+
+                    if (found)
+                        return found;
                 }
                 else
-                {
                     equation += values[i];
-                }
             }
         }
 
@@ -96,30 +103,31 @@ public static class Day7
         {
             var eq = equation.Split(' ');
 
-            var answer = long.Parse(eq[0]);
+            var eqAnswer = long.Parse(eq[0]);
 
             for (var i = 1; i < eq.Length; i++)
             {
                 switch (eq[i])
                 {
                     case "+":
-                        answer += long.Parse(eq[i + 1]);
+                        eqAnswer += long.Parse(eq[i + 1]);
                         i++;
                         break;
                     case "*":
-                        answer *= long.Parse(eq[i + 1]);
+                        eqAnswer *= long.Parse(eq[i + 1]);
                         i++;
                         break;
                     case "||":
-                        answer = Convert.ToInt64("" + answer + "" + long.Parse(eq[i + 1]));
+                        eqAnswer = Convert.ToInt64("" + answer + "" + long.Parse(eq[i + 1]));
                         i++;
                         break;
                 }
             }
 
-            eqAnswers.Add(answer);
+            if (eqAnswer == answer)
+                return true;
         }
 
-        return eqAnswers;
+        return false;
     }
 }

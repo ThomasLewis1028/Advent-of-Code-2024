@@ -18,7 +18,7 @@ while (true)
     Console.Clear();
     
     var timer = Stopwatch.StartNew();
-    var time = DateTime.Now;
+    
     switch (day)
     {
         case 1:

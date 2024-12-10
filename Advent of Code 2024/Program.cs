@@ -43,6 +43,7 @@ while (true)
             Day7.Run();
             break;
         case 8:
+            Day8.Run();
             break;
         case 9:
             break;

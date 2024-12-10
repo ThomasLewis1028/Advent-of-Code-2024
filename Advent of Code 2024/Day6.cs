@@ -273,7 +273,7 @@ public static class Day6
                 }
         }
 
-        // PrintMap(map);
+        PrintMap(map);
         return count;
     }
 

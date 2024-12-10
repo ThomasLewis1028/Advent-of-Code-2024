@@ -41,8 +41,6 @@ public static class Day7
 
         foreach (var equation in equations)
         {
-            List<long> eqAnswers = new List<long>();
-
             var found = Calculate(equation.answer, equation.values, "", 0);
 
             if (found)
@@ -58,8 +56,6 @@ public static class Day7
 
         foreach (var equation in equations)
         {
-            List<long> eqAnswers = new List<long>();
-
             var found = Calculate(equation.answer, equation.values, "", 0, true);
 
             if (found)

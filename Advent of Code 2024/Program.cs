@@ -46,8 +46,10 @@ while (true)
             Day8.Run();
             break;
         case 9:
+            Day9.Run();
             break;
         case 10:
+            Day10.Run();
             break;
         case 11:
             break;
